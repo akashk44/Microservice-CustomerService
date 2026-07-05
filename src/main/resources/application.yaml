@@ -18,5 +18,12 @@ spring:
 #        format_sql: true
 #        hibernate:
 #          dialect: org.hibernate.dialect.MySQL5Dialect
+
+management:
+  endpoints:
+    web:
+       exposure:
+         include: refresh
+
 server:
   port: 8082
