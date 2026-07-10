@@ -8,6 +8,8 @@ import in.akash.model.CustomerProfile;
 import in.akash.model.PlanData;
 import in.akash.repository.CustomerRepository;
 import in.akash.service.CustomerService;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import jakarta.servlet.http.PushBuilder;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.ParameterResolutionDelegate;
@@ -50,7 +52,7 @@ public class CustomerRestController {
 
 
     @GetMapping("/showprofile/{phoneNumber}")
-    public ResponseEntity<CustomerProfile> Showprofile(@PathVariable Long phoneNumber) {
+    public ResponseEntity<CustomerProfile> Showprofile(@PathVariable Long phoneNumber, PushBuilder pushBuilder) {
 
        /*
         RestTemplate restTemplate = new RestTemplate();
@@ -85,10 +87,9 @@ public class CustomerRestController {
         customerProfile.setFriendContactNumbers(friendContactNumbers);
 
         return ResponseEntity.ok(customerProfile);
+
     }
-
-
-
+    
 
 }
 

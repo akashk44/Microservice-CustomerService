@@ -18,12 +18,16 @@ spring:
 #        format_sql: true
 #        hibernate:
 #          dialect: org.hibernate.dialect.MySQL5Dialect
+  cloud:
+    openfeign:
+      circuit breaker:
+        enabled: true
 
 management:
   endpoints:
     web:
        exposure:
-         include: refresh
+         include: health, metrics, circuitbreakerevents, circuitbreaker, refresh
 
 server:
   port: 8082
@@ -32,3 +36,16 @@ server:
 #    client:
 #      service-url:
 #        defaultZone: http://localhost:8761/eureka/
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        registerHealthIndicator: true
+        slidingWindowSize: 4
+        failureRateThreshold: 50
+        permittedNumberOfCallsInHalfOpenState: 2
+        waitDurationInOpenState: 10000
+
+
+
+
