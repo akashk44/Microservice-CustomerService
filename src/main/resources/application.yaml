@@ -23,11 +23,7 @@ spring:
       circuit breaker:
         enabled: true
 
-management:
-  endpoints:
-    web:
-       exposure:
-         include: health, metrics, circuitbreakerevents, circuitbreaker, refresh
+
 
 server:
   port: 8082
@@ -45,6 +41,8 @@ resilience4j:
         failureRateThreshold: 50
         permittedNumberOfCallsInHalfOpenState: 2
         waitDurationInOpenState: 10000
+
+
 
 
 
